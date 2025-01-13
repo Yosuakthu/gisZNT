@@ -53,6 +53,15 @@ subdomains:['mt0','mt1','mt2','mt3']
         .then(response => response.json())
             .then(data => {
                 L.geoJSON(data, {
+                    style: function (feature) {
+                // Pastikan properti 'color' ada
+                console.log('Color applied:', feature.properties.color);
+                return {
+                    color: feature.properties.color || '#3388ff', // Default color jika tidak ada
+                    weight: 2,
+                    fillOpacity: 0.6
+                };
+            },
                     onEachFeature: function (feature, layer) {
                         // Check if feature has properties
                         if (feature.properties) {

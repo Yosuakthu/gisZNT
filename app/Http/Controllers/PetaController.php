@@ -55,6 +55,26 @@ class PetaController extends Controller
             Log::info('GeoData:', $geoData->toArray()); // Log data dari database
 
             $features = $geoData->map(function($item) {
+
+                $cleanRpbulat = str_replace(['Rp.', '.'], '', $item->rpbulat); // Hapus Rp. dan titik
+                $rpbulat = (int)$cleanRpbulat; // Konversi ke integer
+
+                $color = 'green'; // Default warna
+                if ($rpbulat >= 1000000) {
+                    $color = 'Coral';
+                } elseif ($rpbulat >= 500000) {
+                    $color = 'lime';
+                }elseif ($rpbulat >= 300000) {
+                    $color = 'yellow';
+                } elseif ($rpbulat >= 150000) {
+                    $color = 'orange';
+                } elseif ($rpbulat >= 100000) {
+                    $color = 'red';
+                } elseif ($rpbulat >= 50000) {
+                $color = '#90EE90';
+                } elseif ($rpbulat >= 1000) {
+                    $color = 'Teal';
+                }
                 return [
                     'type' => 'Feature',
                     'properties' => [
@@ -79,6 +99,7 @@ class PetaController extends Controller
                         'RANGE_Ni_1' => $item->range_ni_1,
                         'RP_1' => $item->rp_1,
                         'rp_2' => $item->rp_2,
+                        'color'=> $color
                     ],
                     'geometry' => [
                         'type' => 'MultiPolygon',
