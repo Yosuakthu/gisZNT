@@ -27,7 +27,43 @@
    <style type="text/CSS">
     #map{
       height: 880px;
+    }.navbar-info {
+      position: absolute;
+      bottom: 60px;
+      right: 20px;
+      background-color: white;
+      color: #333;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      font-family: Arial, sans-serif;
     }
+    .navbar-info h3 {
+      margin: 0;
+      margin-bottom: 10px;
+      font-size: 25px;
+    }
+    .navbar-info ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar-info li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.legend-color {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
    </style>
 
 

@@ -1,5 +1,35 @@
 
-<div id="map"></div>
+<div id="map">
+    <div id="navbar-info" class="navbar-info">
+    <h3><strong>Color Information</strong></h3>
+    <ul>
+        <li>
+            <span class="legend-color" style="background-color: Coral;"></span> ≥ Rp. 1.000.000 (Coral)
+          </li>
+          <li>
+            <span class="legend-color" style="background-color: lime;"></span> Rp. 500.000 - Rp. 999.999 (Lime)
+          </li>
+          <li>
+            <span class="legend-color" style="background-color: yellow;"></span> Rp. 300.000 - Rp. 499.999 (Yellow)
+          </li>
+          <li>
+            <span class="legend-color" style="background-color: orange;"></span> Rp. 150.000 - Rp. 299.999 (Orange)
+          </li>
+          <li>
+            <span class="legend-color" style="background-color: red;"></span> Rp. 100.000 - Rp. 149.999 (Red)
+          </li>
+          <li>
+            <span class="legend-color" style="background-color: #90EE90;"></span> Rp. 50.000 - Rp. 99.999 (Light Green)
+          </li>
+          <li>
+            <span class="legend-color" style="background-color: Teal;"></span> Rp. 1.000 - Rp. 49.999 (Teal)
+          </li>
+          <li>
+            <span class="legend-color" style="background-color: green;"></span> Rp. 0  ( Green)
+          </li>
+      </ul>
+  </div>
+</div>
 
 <script src="{{ asset('assets/leaflet/js/qgis2web_expressions.js')}}"></script>
 <script src="{{ asset('assets/leaflet/js/leaflet.rotatedMarker.js')}}"></script>
