@@ -64,6 +64,41 @@
   border: 1px solid #ccc;
   border-radius: 3px;
 }
+.weather-info {
+      position: absolute;
+      bottom: 60px;
+      left: 20px;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      width: 250px;
+      font-family: Arial, sans-serif;
+    }
+
+    .weather-info h3 {
+      margin: 0;
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    .weather-info ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .weather-info li {
+      margin-bottom: 8px;
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .weather-info li strong {
+      font-weight: bold;
+    }
    </style>
 
 

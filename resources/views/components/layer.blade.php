@@ -1,5 +1,15 @@
 
 <div id="map">
+    <div class="weather-info">
+        <h3>Informasi Cuaca</h3>
+        <ul>
+          <li><span><strong>Lokasi:</strong></span> <span id="location">Loading...</span></li>
+          <li><span><strong>Suhu:</strong></span> <span id="temperature">Loading...</span></li>
+          <li><span><strong>Kelembapan:</strong></span> <span id="humidity">Loading...</span></li>
+          <li><span><strong>Angin:</strong></span> <span id="wind">Loading...</span></li>
+          <li><span><strong>Deskripsi:</strong></span> <span id="description">Loading...</span></li>
+        </ul>
+      </div>
     <div id="navbar-info" class="navbar-info">
     <h3><strong>Color Information</strong></h3>
     <ul>
@@ -63,7 +73,7 @@ subdomains:['mt0','mt1','mt2','mt3']
 
 
         var maps = L.map('map',{
-          center:[3.5659182,125.513743,11.58],
+          center:[3.5659182, 125.513743],
           zoom:11,
           layers :[googleHybrid]
         });
@@ -75,7 +85,10 @@ subdomains:['mt0','mt1','mt2','mt3']
 
 
     };
+
     var layerControl = L.control.layers(baseMaps).addTo(maps);
+
+
 
 
         // Load GeoJSON data
@@ -116,5 +129,58 @@ subdomains:['mt0','mt1','mt2','mt3']
                 // Optionally adjust the view to the data
                 var bounds = L.geoJSON(data).getBounds();
             });
+
+
+     // Fungsi untuk mengambil data cuaca
+     async function fetchWeather(lat, lon) {
+  try {
+    const apiKey = 'e9ac85b92a87dac020fe642ca7984888';
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&lang=id&appid=${apiKey}`;
+    console.log('Fetching weather data from URL:', url);
+
+    const response = await fetch(url);
+    console.log('Response status:', response.status);
+
+    if (!response.ok) {
+      throw new Error(`HTTP Error: ${response.status} - ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    console.log('Weather data received:', data);
+
+    // Update DOM elements
+    document.getElementById('location').textContent = data.name || 'Tidak diketahui';
+    document.getElementById('temperature').textContent = `${data.main.temp}°C`;
+    document.getElementById('humidity').textContent = `${data.main.humidity}%`;
+    document.getElementById('wind').textContent = `${data.wind.speed} m/s`;
+    document.getElementById('description').textContent = data.weather[0].description || 'Tidak tersedia';
+  } catch (error) {
+    console.error('Error while fetching weather data:', error);
+    document.getElementById('location').textContent = 'Error';
+    document.getElementById('temperature').textContent = 'Error';
+    document.getElementById('humidity').textContent = 'Error';
+    document.getElementById('wind').textContent = 'Error';
+    document.getElementById('description').textContent = 'Error';
+  }
+}
+
+
+
+  // Ambil lokasi pusat peta dan tampilkan cuaca
+  maps.on('moveend', function () {
+    const center = maps.getCenter();
+    console.log('Map center moved to:', center.lat, center.lng);
+    fetchWeather(center.lat, center.lng);
+  });
+
+  maps.on('click', function(e) {
+  const lat = e.latlng.lat;
+  const lon = e.latlng.lng;
+  console.log('Map clicked at:', lat, lon);
+  fetchWeather(lat, lon);  // Menampilkan cuaca berdasarkan lokasi yang diklik
+});
+
+  // Panggilan awal
+  fetchWeather(3.5659182, 125.513743);
 
     </script>
