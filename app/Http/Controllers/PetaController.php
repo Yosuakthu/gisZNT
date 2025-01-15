@@ -12,25 +12,23 @@ use App\Imports\GeoDataImport;
 use Yajra\DataTables\Facades\DataTables;
 class PetaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function usrpeta()
     {
-        return view('usrpeta',['titel' => 'Peta']);
+        return view('usrpeta',['titel' => 'Peta Zonah Nilai Tanah']);
     }
 
     public function peta()
     {
-        return view('peta',['titel' => 'Peta']);
+        return view('peta',['titel' => 'Peta Zonah Nilai Tanah']);
     }
 
     public function showForm()
     {
-        return view('import_csv',['titel' => 'Import Data CSV']);
+        return view('import_csv',['titel' => 'Import Data Zonah Nilai Tanah']);
     }
 
-
+    //Star Note  https://docs.google.com/document/d/e/2PACX-1vTjuREUPY0Mf39ulOGH_Eh5DQMMm6xmsZXDC7vZ7vU1MnjaZ-y3vozqwanhRrBCzdb1SV-pyG1ttEyj/pub
     public function showCsvTable(Request $request)
     {
         if ($request->ajax()) {
@@ -44,9 +42,11 @@ class PetaController extends Controller
             ->addIndexColumn()
             ->make(true);
         }
-        return view('datacsv',['titel' => 'Data CSV']);
+        return view('datacsv',['titel' => 'Data Zonah Nilai Tanah']);
     }
+    // End Note
 
+    // Star Note  https://docs.google.com/document/d/e/2PACX-1vTn1Yyueno4u0I1PnHbzgBrrSb2bWNuIX8wAR0mS1Ll47f3EXZ9bPRK_CPIsYfr2IEUtenpdR5KEfz9/pub
     public function getGeoJson()
     {
         try {
@@ -127,6 +127,7 @@ class PetaController extends Controller
         return view('import_geojson',['titel' => 'Import Data ']);
     }
 
+    // Star Note  https://docs.google.com/document/d/e/2PACX-1vRXC9Z1opkAmK_e9j6UY5-y7oFuXB-ZcwTQS-sgkFahhdwkm5f4nN7MAWRoV9JaAVhPgE5nxw3C_9qY/pub
     public function importGeoJSON(Request $request)
     {
         $request->validate([
@@ -185,7 +186,7 @@ class PetaController extends Controller
         }
     }
 
-
+// End Note
 
 
 
